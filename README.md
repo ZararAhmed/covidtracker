@@ -1,70 +1,68 @@
-# Getting Started with Create React App
+﻿# Git Workflow
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 1. To start a project
+1. Clone the repository
+    ```zsh
+    $ git clone <remote-url>
+    ```
 
-## Available Scripts
+## 2. To do new feature/modify/hotfix
+1. Checkout into `dev` branch
+    ```zsh
+    $ git checkout dev
+    ```
+1. Pull the latest changes
+    ```zsh
+    $ git pull origin dev
+    ```
+1. Create a `<branch-name>` branch from `dev` branch
+    ```zsh
+    $ git checkout -b <branch-name> dev
+    # branch-name must contain add/, modify/ or hotfix/ 
+    # e.g. add/feature-name for new feature or hotfix/bug-name for hotfix
 
-In the project directory, you can run:
+    # push new-branch to remote repository
+    $ git push -u origin <branch-name>
+    ```
+1. Make changes and commit each logical change with descriptive message
+## 3. To commit the changes
+1. Inside your working branch
+    ```zsh
+    # check the changed files
+    $ git status
+    # make sure only files are modified which you intend to
 
-### `npm start`
+    # stage the changes
+    $ git add file1 file2 file3 ...
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+    # to stage all changes at once 
+    $ git add .
+    # make sure any file you didn't change shouldn't be appeared in red in git status
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+    # commit the changes
+    $ git commit -m "[Add/Modify/Hotfix] <MESSAGE>"
+    # Message must be descriptive and relevent to the changes in the code
+    ```
+## 4. To submit merge request
+1. Checkout into `dev` branch and pull any new changes
+    ```zsh
+    $ git checkout dev
+    $ git pull origin dev
+    ```
+1. Checkout into your working branch and merge with dev
+    ```zsh
+    $ git checkout <branch-name>
+    $ git merge dev
+    ```
+1. Resolve the conflict if any and commit the changes [as discussed above](#3-to-commit-the-changes)
+1. Push the branch and create the merge request
+    ```zsh
+    $ git push -u origin <branch-name>
+    ```
+## 5. To delete a block of code (Dead Code Removal)
+1. Comment the block of code and make your required changes
+1. Commit the changes describing the changes you made [as discussed above](#3-to-commit-the-changes)
+1. Delete the commented code with this message format 
+    ```zsh
+    $ git commit -m "[DCR] <Describe the code block functionality>"
+    ```
