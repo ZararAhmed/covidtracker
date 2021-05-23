@@ -21,7 +21,6 @@ class App extends Component {
   }
   render() {
     const { data, country } = this.state;
-    console.log(data);
     if (!data) {
       return <CircularProgress />
     }
